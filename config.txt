@@ -1,0 +1,9 @@
+[file-paths]
+topicWords = path/to/data/topicWords.txt
+topicSentences = path/to/data/topicSentences.txt
+documentPi = path/to/data/documentPi.txt
+documentThetha = path/to/data/documentThetha.txt
+
+[folder-paths]
+rawTweets = path/to/summarisation scripts/data/raw-tweets
+results = path/to/summarisation scripts/results
