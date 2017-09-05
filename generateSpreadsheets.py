@@ -2,6 +2,12 @@ import xlwt
 import csv
 import json
 #function to generate a spreadsheet of the topic summaries
+from configparser import SafeConfigParser
+
+parser = SafeConfigParser()
+parser.read('config.txt')
+
+path = parser.get('[folder-paths]', 'results')
 def summarySpreadsheet(rows):
 	wb = xlwt.Workbook()
 	wordFormat = xlwt.easyxf('align: wrap yes, horiz centre; font: name Calibri, height 220; border: left thin, top thin, right thin')
@@ -40,7 +46,7 @@ def summarySpreadsheet(rows):
 			i=1
 			summaryHeaders(r, sheet1,sidestyle,summStyle, emptyLine)
 
-	wb.save('./results/summaries.xls')
+	wb.save('./%s/summaries.xls' %(path))
 	print ("Spreadsheet ready!")
 #function to generate header cells
 def summaryHeaders(r, sheet1, sidestyle,summStyle, emptyLine ):
@@ -84,7 +90,7 @@ def topicWordsSpreadsheet(topics):
 			i = 1
 			topicHeaders(r,sheet1, sidestyle)
 
-	wb.save('./results/topics.xls')
+	wb.save('./%s/topics.xls' %(path))
 	print ("Spreadsheet ready!")		
 
 def topicHeaders(r,sheet1, sidestyle):
@@ -95,7 +101,7 @@ def topicHeaders(r,sheet1, sidestyle):
 
 def writeCsvFile(tupleList):
 
-    with open('./results/topicWords.csv','w',newline='', encoding = 'utf-8') as f:
+    with open('./%s/topicWords.csv' %(path),'w',newline='', encoding = 'utf-8') as f:
         writer = csv.writer(f, delimiter=',')
         writer.writerows(tupleList)
 
@@ -119,7 +125,7 @@ def genJson(jsonRows):
 		jsonFormat =  json.dumps(dic)	
 		
 		#for top in topics:
-		with open('./results/jsonFile.json','w', encoding='utf=8') as f:
+		with open('./%s/jsonFile.json' %(path),'w', encoding='utf=8') as f:
 			f.write(jsonFormat)
 			
 
