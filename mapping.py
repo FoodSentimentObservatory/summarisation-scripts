@@ -1,10 +1,7 @@
 import os
 import sys
 import re
-from configparser import SafeConfigParser
-
-parser = SafeConfigParser()
-parser.read('config.txt')
+import config
 #opening a pi file and extracting the doc index and making them match the file name format
 def readFile(files):
 	fileNames = []
@@ -29,7 +26,7 @@ def readFile(files):
 #mapping those doc indexes to their corresponding filenames in the raw tweets		
 rawFiles = []
 def mapToRawFiles():
-	path =  parser.get('folder-paths', 'rawTweets')
+	path =  config.rawTweetsPath()
 	files = []
 	readFile(files)	
 

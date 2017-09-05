@@ -1,13 +1,10 @@
 import xlwt
 import csv
 import json
+import config
 #function to generate a spreadsheet of the topic summaries
-from configparser import SafeConfigParser
 
-parser = SafeConfigParser()
-parser.read('config.txt')
-
-path = parser.get('[folder-paths]', 'results')
+path = config.resultsPath()
 def summarySpreadsheet(rows):
 	wb = xlwt.Workbook()
 	wordFormat = xlwt.easyxf('align: wrap yes, horiz centre; font: name Calibri, height 220; border: left thin, top thin, right thin')
