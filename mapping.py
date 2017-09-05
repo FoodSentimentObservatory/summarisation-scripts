@@ -5,7 +5,7 @@ import config
 #opening a pi file and extracting the doc index and making them match the file name format
 def readFile(files):
 	fileNames = []
-	documentPiFile = parser.get('file-paths', 'documentPi')
+	documentPiFile = config.getDocumentPi()
 	with open (documentPiFile, "r") as doc:
 		lines = [line.split() for line in doc.readlines()]
 		

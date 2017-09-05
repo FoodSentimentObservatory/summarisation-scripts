@@ -3,14 +3,12 @@ import os
 from operator import itemgetter
 from itertools import groupby
 import re
-from configparser import SafeConfigParser
+import config
 
-parser = SafeConfigParser()
-parser.read('config.txt')
 #functions used by doc topics and topic importance
 def mainTopics():
 	topTopics=[]
-	documentThethaFile = parser.get('file-paths', 'documentThetha')
+	documentThethaFile = config.getDocumentThethaFile()
 	doc = open (documentThethaFile, "r")
 	lines = [line.split() for line in doc.readlines()]
 	i=0
@@ -68,7 +66,7 @@ def topicLabels(value, line, topicsAndLabels):
 #function to collect the sentiment scores for each document
 def mainSentiment():
 	topSents = []
-	documentPiFile = parser.get('file-paths', 'documentPi')
+	documentPiFile = config.getDocumentPi()
 	doc = open (documentPiFile, "r")
 	lines = [line.split() for line in doc.readlines()]
 	topSentiment = 0

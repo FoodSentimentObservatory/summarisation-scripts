@@ -34,12 +34,6 @@ def removeSimilars(topTen):
 def similar(seq1, seq2):
 	return SequenceMatcher(a=seq1, b=seq2).ratio() > 0.7 
 
-def test():
-	a = "banana shake"
-	b = "I love a banana shake during summer"
 
-	similarity = similar(a, b)
-
-	print (similarity)
 
 	

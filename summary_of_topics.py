@@ -7,11 +7,8 @@ import collections
 import csv
 import topicImportance
 import generateSpreadsheets
-from configparser import SafeConfigParser
+import config
 import similarityCheck
-
-parser = SafeConfigParser()
-parser.read('config.txt')
 
 topTopics = topicImportance.topicOfDocument()
 topTopicsOfDocs = docTopics.topicOfDocument()
@@ -38,7 +35,7 @@ def readFile (doc, finalList, dic, fullList):
 #calls the read function for topic words and generates a dictionary 
 def readTopicWords(dicW) :
 	fullList = []
-	topicWordFile = parser.get('file-paths', 'topicWords')
+	topicWordFile = config.getTopicWordsFile()
 	doc = open(topicWordFile, "r", encoding='utf-8')
 	topicWords = []
 	readFile(doc, topicWords, dicW, fullList)
@@ -46,7 +43,7 @@ def readTopicWords(dicW) :
 #calls the read function for topic sentences and generates a dictionary	
 def readTopicSentences(dicS):	
 	fullList = []
-	topicSentencesFile = parser.get('file-paths', 'topicSentences')
+	topicSentencesFile = config.getTopicSentencesFile()
 	doc = open (topicSentencesFile, "r", encoding='utf-8')
 	topicSentences = []
 	readFile(doc, topicSentences, dicS, fullList)
@@ -200,7 +197,8 @@ def mapToRawTexts():
 def printAndWriteResults(allTopicsSorted):	
 	rows = []
 	jsonRows = []
-	with open('./results/summary.txt','w', encoding = 'utf-8') as f:
+	path = config.resultsPath()
+	with open('./%s/summary.txt' %(path),'w', encoding = 'utf-8') as f:
 		f.write("The topics have been ordered by importance in the whole corpus starting from the most important.\n")
 		f.write("--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---\n")
 		f.write(" \n")
